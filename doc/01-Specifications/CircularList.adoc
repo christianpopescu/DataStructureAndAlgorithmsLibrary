@@ -1,0 +1,19 @@
+= Circular List
+Doc Writer <christian.popescu@outlook.com>
+v 1.0, 2020-06-19
+
+== Simple requirements
+
+*Use case*:
+
+Manage the controls inside one interface window. For this we need to go back and forth.
+
+
+Operations:
+
+* Classical: Add, Remove, Insert
+* Insert at given position
+* Previous and Next
+* Get current
+* Go First
+* Go Last
