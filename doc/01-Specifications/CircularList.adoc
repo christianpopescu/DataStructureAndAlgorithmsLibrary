@@ -11,9 +11,22 @@ Manage the controls inside one interface window. For this we need to go back and
 
 Operations:
 
-* Classical: Add, Remove, Insert
-* Insert at given position
-* Previous and Next
+* Add
+* AddBefore, AddAfter
 * Get current
 * Go First
 * Go Last
+
+== C# Design
+
+Two generic classes:
+
+* CircularLinkedList<T>
+* CircularLinkedListNode<T>
+
+== First try
+
+Use LinkedList<T> and LinkedListNode<T> from dot net collection to implement this
+
+LinkedListNode<CircularLinkedListNode<T>>
+LinkedList<CircularLinkedListNode<T>>

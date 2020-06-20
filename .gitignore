@@ -37,3 +37,4 @@
 #obj and bin folders
 /src/**/obj
 /src/**/bin
+/src/CSharp/DSALSolution/DSALibrary.Tests/obj
