@@ -33,3 +33,7 @@
 
 #Intelij doc project
 **.idea
+
+#obj and bin folders
+/src/**/obj
+/src/**/bin
