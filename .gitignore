@@ -38,3 +38,5 @@
 /src/**/obj
 /src/**/bin
 /src/CSharp/DSALSolution/DSALibrary.Tests/obj
+/src/CSharp/**/.vs
+/src/CSharp/**/.vscode
