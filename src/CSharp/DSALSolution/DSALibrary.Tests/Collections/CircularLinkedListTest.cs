@@ -41,5 +41,79 @@ namespace DSALibrary.Tests.Collections
             Assert.Equal("abc", cllString.Last.Value);
 
         }
+
+        [Fact]
+        public void Check_Iterator()
+        {
+            CircularLinkedListNew<string> cllString = new CircularLinkedListNew<string>();
+            cllString.AddFirst("abc");
+            cllString.AddFirst("def");
+            Assert.Equal("abc", cllString.Last.Value);
+
+        }
+
+        [Fact]
+        public void Check_Current_on_First()
+        {
+            CircularLinkedListNew<string> cllString = new CircularLinkedListNew<string>();
+            cllString.AddFirst("abc");
+            cllString.AddFirst("def");
+            cllString.AddLast("xyz");
+            var ci = cllString.GetCircularIterator();
+
+            Assert.Equal("def", ci.Current());
+
+        }
+
+        [Fact]
+        public void Check_Next()
+        {
+            CircularLinkedListNew<string> cllString = new CircularLinkedListNew<string>();
+            cllString.AddFirst("abc");
+            cllString.AddFirst("def");
+            cllString.AddLast("xyz");
+            var ci = cllString.GetCircularIterator();
+            ci.MoveNext();
+            Assert.Equal("abc", ci.Current());
+
+        }
+        [Fact]
+        public void Check_Previous()
+        {
+            CircularLinkedListNew<string> cllString = new CircularLinkedListNew<string>();
+            cllString.AddFirst("abc");
+            cllString.AddFirst("def");
+            cllString.AddLast("xyz");
+            var ci = cllString.GetCircularIterator();
+            ci.MovePrevious();
+            Assert.Equal("xyz", ci.Current());
+
+        }
+        [Fact]
+        public void Check_Previous_Loop()
+        {
+            CircularLinkedListNew<string> cllString = new CircularLinkedListNew<string>();
+            cllString.AddFirst("abc");
+            cllString.AddFirst("def");
+            cllString.AddLast("xyz");
+            var ci = cllString.GetCircularIterator();
+            ci.MovePrevious();
+            Assert.Equal("xyz", ci.Current());
+            ci.MovePrevious();
+            Assert.Equal("abc", ci.Current());
+            ci.MovePrevious();
+            Assert.Equal("def", ci.Current());
+
+        }
+
+        [Fact]
+        public void Current()
+        {
+            var cllString = new CircularLinkedListNew<string>();
+            var ci = cllString.GetCircularIterator();
+            Assert.Null(ci);
+
+        }
+
     }
 }

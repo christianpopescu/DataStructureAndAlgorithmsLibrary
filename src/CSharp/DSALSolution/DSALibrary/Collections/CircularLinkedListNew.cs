@@ -4,37 +4,34 @@ namespace DSALibrary.Collections
 {
     public class CircularLinkedListNew<T> : LinkedList<T>, ICircularIterable<T>
     {
-        public ICircularIterator<T> GetCircularIterator()
-        {
-            throw new System.NotImplementedException();
-        }
+        public ICircularIterator<T> GetCircularIterator() => this.Count > 0  ? new CircularIterator(this) : null;
 
         class CircularIterator : ICircularIterator<T>
         {
             LinkedList<T> linkedList;
 
-            CircularIterator(LinkedList<T> listToIterate)
+            LinkedListNode<T> _current;
+
+            public CircularIterator(LinkedList<T> listToIterate)
             {
                 linkedList = listToIterate;
+                Reset();
             }
             public void MoveNext()
             {
-                throw new System.NotImplementedException();
+                _current = _current.Next ?? linkedList.First;
             }
 
             public void MovePrevious()
             {
-                throw new System.NotImplementedException();
+                _current = _current.Previous ?? linkedList.Last;
             }
 
-            public T Current()
-            {
-                throw new System.NotImplementedException();
-            }
+            public T Current() => _current.Value != null ? _current.Value : default(T);
 
             public void Reset()
             {
-                throw new System.NotImplementedException();
+                _current = linkedList.First;
             }
         }
     }
