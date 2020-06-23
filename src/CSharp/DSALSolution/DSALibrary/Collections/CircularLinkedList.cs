@@ -2,19 +2,37 @@
 
 namespace DSALibrary.Collections
 {
-    public class CircularLinkedList<T>
+    public class CircularLinkedList<T> : LinkedList<T>, ICircularIterable<T>
     {
-        protected LinkedList<CircularLinkedListNode<T>> ListElements;
+        public ICircularIterator<T> GetCircularIterator() => this.Count > 0  ? new CircularIterator(this) : null;
 
-        public CircularLinkedList() => ListElements = new LinkedList<CircularLinkedListNode<T>>();
+        class CircularIterator : ICircularIterator<T>
+        {
+            LinkedList<T> linkedList;
 
-        #region Properties
-        public int Count => ListElements.Count;
+            LinkedListNode<T> _current;
 
-        public CircularLinkedListNode<T> First => ListElements.First.Value;
+            public CircularIterator(LinkedList<T> listToIterate)
+            {
+                linkedList = listToIterate;
+                Reset();
+            }
+            public void MoveNext()
+            {
+                _current = _current.Next ?? linkedList.First;
+            }
 
-        public CircularLinkedListNode<T> Last => ListElements.Last.Value;
-        #endregion
-        public void AddFirst(CircularLinkedListNode<T> node) => ListElements.AddFirst(node.ListNode);
+            public void MovePrevious()
+            {
+                _current = _current.Previous ?? linkedList.Last;
+            }
+
+            public T Current() => _current.Value != null ? _current.Value : default(T);
+
+            public void Reset()
+            {
+                _current = linkedList.First;
+            }
+        }
     }
 }
